@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Learn what kills, deaths, and highest streak mean in the Call of Duty Tracker.">
+<title>Call of Duty Tracker | Stats Guide</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header">
+    <div class="site-header-inner">
+        <a class="logo" href="index.html">CALL OF DUTY TRACKER</a>
+        <button class="nav-toggle" type="button" aria-controls="siteNav" aria-expanded="false">MENU</button>
+        <nav id="siteNav" class="site-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+<a href="stats.html">My Stats</a>
+<a href="stats-guide.html" aria-current="page">Stats Guide</a>
+<a href="scorestreak-guide.html">Scorestreak Guide</a>
+<a href="maps.html">Map Guide</a>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content">
+<section class="page" aria-labelledby="guideTitle">
+    <h1 id="guideTitle" class="content-title">Call of Duty Stats Guide</h1>
+
+    <article class="info-card">
+        <h2>Kills</h2>
+        <p>A kill is counted when you eliminate an opposing player. Your total kills show how many enemy players you have eliminated during the games represented by your statistics.</p>
+        <p>The tracker displays a randomly generated demo total.</p>
+    </article>
+
+    <article class="info-card">
+        <h2>Deaths</h2>
+        <p>A death is counted when your character is eliminated by an opposing player or another source of damage.</p>
+        <p>The tracker displays a randomly generated demo total.</p>
+    </article>
+
+    <article class="info-card">
+        <h2>Highest Streak</h2>
+        <p>Your highest streak is the largest number of consecutive kills you achieved without dying.</p>
+        <p>For example, a highest streak of 12 means you eliminated 12 opponents in a row before your streak ended.</p>
+    </article>
+
+    <article class="info-card">
+        <h2>How the Demo Works</h2>
+        <p>This website is a demonstration tracker. The statistics are randomly generated and are not connected to an actual Call of Duty account.</p>
+    </article>
+</section>
+</main>
+
+<footer class="site-footer">
+    <p>Call of Duty Tracker Demo</p>
+    <p>
+        <a href="https://www.callofduty.com/" target="_blank" rel="noopener">Call of Duty</a>
+        <a href="https://support.activision.com/" target="_blank" rel="noopener">Activision Support</a>
+        <a href="https://www.esrb.org/" target="_blank" rel="noopener">ESRB</a>
+    </p>
+</footer>
+<script>
+const navToggle = document.querySelector(".nav-toggle");
+const siteNav = document.querySelector("#siteNav");
+
+if (navToggle && siteNav) {
+    navToggle.addEventListener("click", function () {
+        const isOpen = siteNav.classList.toggle("open");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+}
+
+document.querySelectorAll(".site-nav a").forEach(function (link) {
+    link.addEventListener("click", function () {
+        if (siteNav) {
+            siteNav.classList.remove("open");
+            navToggle.setAttribute("aria-expanded", "false");
+        }
+    });
+});
+</script>
+</body>
+</html>

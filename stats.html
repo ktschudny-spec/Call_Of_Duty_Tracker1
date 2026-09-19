@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="View randomly generated Call of Duty player statistics including kills, deaths, highest streak, scorestreaks, and maps.">
+<title>Call of Duty Tracker | My Stats</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header">
+    <div class="site-header-inner">
+        <a class="logo" href="index.html">CALL OF DUTY TRACKER</a>
+        <button class="nav-toggle" type="button" aria-controls="siteNav" aria-expanded="false">MENU</button>
+        <nav id="siteNav" class="site-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+<a href="stats.html" aria-current="page">My Stats</a>
+<a href="stats-guide.html">Stats Guide</a>
+<a href="scorestreak-guide.html">Scorestreak Guide</a>
+<a href="maps.html">Map Guide</a>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content">
+<section class="page" aria-labelledby="statsTitle">
+    <h1 id="statsTitle" class="content-title">Call of Duty Tracker</h1>
+    <p id="playerName" class="player-name"></p>
+
+    <div class="button-row">
+        <button id="generateButton" class="primary-button" type="button">GENERATE NEW STATS</button>
+        <button id="logoutButton" class="secondary-button" type="button">LOG OUT</button>
+    </div>
+
+    <p id="statsMessage" class="success-message" role="status" aria-live="polite"></p>
+
+    <section class="stats-grid" aria-label="Player statistics">
+        <div class="stat-box">
+            <h2>Kills</h2>
+            <div id="kills" class="stat-number">0</div>
+        </div>
+        <div class="stat-box">
+            <h2>Deaths</h2>
+            <div id="deaths" class="stat-number">0</div>
+        </div>
+        <div class="stat-box">
+            <h2>Highest Streak</h2>
+            <div id="streak" class="stat-number">0</div>
+        </div>
+    </section>
+
+    <section class="panel" aria-labelledby="summaryTitle">
+        <h2 id="summaryTitle">Player Statistics Summary</h2>
+        <div class="table-wrapper">
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Statistic</th>
+                        <th scope="col">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Kills</th>
+                        <td id="killsTable">0</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Deaths</th>
+                        <td id="deathsTable">0</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Highest Streak</th>
+                        <td id="streakTable">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="panel" aria-labelledby="mostUsedTitle">
+        <h2 id="mostUsedTitle">Most Used Scorestreaks</h2>
+        <div id="mostUsed" class="scorestreaks" role="list"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="leastUsedTitle">
+        <h2 id="leastUsedTitle">Least Used Scorestreaks</h2>
+        <div id="leastUsed" class="scorestreaks" role="list"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="resourcesTitle">
+        <h2 id="resourcesTitle">Call of Duty Resources</h2>
+        <ul class="resource-list">
+            <li><a href="https://www.callofduty.com/" target="_blank" rel="noopener">Official Call of Duty</a></li>
+            <li><a href="https://support.activision.com/" target="_blank" rel="noopener">Activision Support</a></li>
+            <li><a href="https://www.esrb.org/" target="_blank" rel="noopener">ESRB</a></li>
+        </ul>
+    </section>
+</section>
+</main>
+
+<footer class="site-footer">
+    <p>Call of Duty Tracker Demo</p>
+    <p>
+        <a href="https://www.callofduty.com/" target="_blank" rel="noopener">Call of Duty</a>
+        <a href="https://support.activision.com/" target="_blank" rel="noopener">Activision Support</a>
+        <a href="https://www.esrb.org/" target="_blank" rel="noopener">ESRB</a>
+    </p>
+</footer>
+<script>
+const scorestreaks = ['UAV', 'Hunter Killer', 'K9 Unit', 'Counter UAV', 'VTOL Warship', 'HKDs', 'Rhino', 'D.A.W.G', 'Watchdog Helo', 'Gravemaker', 'Care Package', 'SAM Turret', 'Guardian', 'Sentry Gun', 'Hellstorm Missile', 'Lightning Strike', 'Drone Squad', 'Chopper Gunner', 'Gunship', 'Attack Chopper', 'Cluster Strike', 'Cruise Missile', 'Advanced UAV', 'Juggernaut', 'Wheelson', 'Trophy System', 'Counter Spy Plane', 'Napalm Strike', 'Death Machine', 'RC-XD'];
+
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function shuffle(array) {
+    const copy = [...array];
+
+    for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+
+    return copy;
+}
+
+function generateStats() {
+    const username = sessionStorage.getItem("codUsername") || "Demo Player";
+
+    document.getElementById("playerName").textContent = "Player: " + username;
+
+    const kills = randomNumber(1000, 25000);
+    const deaths = randomNumber(500, 15000);
+    const streak = randomNumber(5, 50);
+
+    document.getElementById("kills").textContent = kills.toLocaleString();
+    document.getElementById("deaths").textContent = deaths.toLocaleString();
+    document.getElementById("streak").textContent = streak;
+
+    const selected = shuffle(scorestreaks);
+    const mostUsed = selected.slice(0, 5);
+    const leastUsed = selected.slice(5, 10);
+
+    document.getElementById("mostUsed").innerHTML =
+        mostUsed.map(function(item) {
+            return '<div class="scorestreak" role="listitem">' + item + '</div>';
+        }).join("");
+
+    document.getElementById("leastUsed").innerHTML =
+        leastUsed.map(function(item) {
+            return '<div class="scorestreak" role="listitem">' + item + '</div>';
+        }).join("");
+
+    document.getElementById("killsTable").textContent = kills.toLocaleString();
+    document.getElementById("deathsTable").textContent = deaths.toLocaleString();
+    document.getElementById("streakTable").textContent = streak;
+
+    document.getElementById("statsMessage").textContent =
+        "New statistics have been generated.";
+}
+
+document.getElementById("generateButton").addEventListener("click", generateStats);
+
+document.getElementById("logoutButton").addEventListener("click", function () {
+    sessionStorage.removeItem("codUsername");
+    window.location.href = "index.html";
+});
+
+generateStats();
+</script>
+<script>
+const navToggle = document.querySelector(".nav-toggle");
+const siteNav = document.querySelector("#siteNav");
+
+if (navToggle && siteNav) {
+    navToggle.addEventListener("click", function () {
+        const isOpen = siteNav.classList.toggle("open");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+}
+
+document.querySelectorAll(".site-nav a").forEach(function (link) {
+    link.addEventListener("click", function () {
+        if (siteNav) {
+            siteNav.classList.remove("open");
+            navToggle.setAttribute("aria-expanded", "false");
+        }
+    });
+});
+</script>
+</body>
+</html>

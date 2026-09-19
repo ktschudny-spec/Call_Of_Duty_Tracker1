@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Learn what scorestreaks are and review the scorestreaks included in the Call of Duty Tracker demo.">
+<title>Call of Duty Tracker | Scorestreak Guide</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header">
+    <div class="site-header-inner">
+        <a class="logo" href="index.html">CALL OF DUTY TRACKER</a>
+        <button class="nav-toggle" type="button" aria-controls="siteNav" aria-expanded="false">MENU</button>
+        <nav id="siteNav" class="site-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+<a href="stats.html">My Stats</a>
+<a href="stats-guide.html">Stats Guide</a>
+<a href="scorestreak-guide.html" aria-current="page">Scorestreak Guide</a>
+<a href="maps.html">Map Guide</a>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content">
+<section class="page" aria-labelledby="scoreTitle">
+    <h1 id="scoreTitle" class="content-title">Scorestreak Guide</h1>
+
+    <article class="info-card">
+        <h2>What Is a Scorestreak?</h2>
+        <p>A scorestreak is a reward earned by building score during a match.</p>
+        <p>Depending on the Call of Duty game and mode, score can come from eliminations, objectives, assists, and other actions.</p>
+    </article>
+
+    <article class="info-card">
+        <h2>Scorestreaks in This Tracker</h2>
+        <p>The tracker randomly selects scorestreaks from the list used by this demo website.</p>
+        <div class="scorestreaks">
+            <div class="scorestreak" role="listitem">UAV</div>
+<div class="scorestreak" role="listitem">Hunter Killer</div>
+<div class="scorestreak" role="listitem">K9 Unit</div>
+<div class="scorestreak" role="listitem">Counter UAV</div>
+<div class="scorestreak" role="listitem">VTOL Warship</div>
+<div class="scorestreak" role="listitem">HKDs</div>
+<div class="scorestreak" role="listitem">Rhino</div>
+<div class="scorestreak" role="listitem">D.A.W.G</div>
+<div class="scorestreak" role="listitem">Watchdog Helo</div>
+<div class="scorestreak" role="listitem">Gravemaker</div>
+<div class="scorestreak" role="listitem">Care Package</div>
+<div class="scorestreak" role="listitem">SAM Turret</div>
+<div class="scorestreak" role="listitem">Guardian</div>
+<div class="scorestreak" role="listitem">Sentry Gun</div>
+<div class="scorestreak" role="listitem">Hellstorm Missile</div>
+<div class="scorestreak" role="listitem">Lightning Strike</div>
+<div class="scorestreak" role="listitem">Drone Squad</div>
+<div class="scorestreak" role="listitem">Chopper Gunner</div>
+<div class="scorestreak" role="listitem">Gunship</div>
+<div class="scorestreak" role="listitem">Attack Chopper</div>
+<div class="scorestreak" role="listitem">Cluster Strike</div>
+<div class="scorestreak" role="listitem">Cruise Missile</div>
+<div class="scorestreak" role="listitem">Advanced UAV</div>
+<div class="scorestreak" role="listitem">Juggernaut</div>
+<div class="scorestreak" role="listitem">Wheelson</div>
+<div class="scorestreak" role="listitem">Trophy System</div>
+<div class="scorestreak" role="listitem">Counter Spy Plane</div>
+<div class="scorestreak" role="listitem">Napalm Strike</div>
+<div class="scorestreak" role="listitem">Death Machine</div>
+<div class="scorestreak" role="listitem">RC-XD</div>
+        </div>
+    </article>
+
+    <article class="info-card">
+        <h2>Important Note</h2>
+        <p>Scorestreak names and exact functions can differ between Call of Duty titles. The scorestreaks on this website are demonstration data.</p>
+    </article>
+</section>
+</main>
+
+<footer class="site-footer">
+    <p>Call of Duty Tracker Demo</p>
+    <p>
+        <a href="https://www.callofduty.com/" target="_blank" rel="noopener">Call of Duty</a>
+        <a href="https://support.activision.com/" target="_blank" rel="noopener">Activision Support</a>
+        <a href="https://www.esrb.org/" target="_blank" rel="noopener">ESRB</a>
+    </p>
+</footer>
+<script>
+const navToggle = document.querySelector(".nav-toggle");
+const siteNav = document.querySelector("#siteNav");
+
+if (navToggle && siteNav) {
+    navToggle.addEventListener("click", function () {
+        const isOpen = siteNav.classList.toggle("open");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+}
+
+document.querySelectorAll(".site-nav a").forEach(function (link) {
+    link.addEventListener("click", function () {
+        if (siteNav) {
+            siteNav.classList.remove("open");
+            navToggle.setAttribute("aria-expanded", "false");
+        }
+    });
+});
+</script>
+</body>
+</html>

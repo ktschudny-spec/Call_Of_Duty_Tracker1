@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Call of Duty Tracker demo website for viewing randomly generated player statistics, scorestreak information, and map information.">
+<title>Call of Duty Tracker | Home</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header">
+    <div class="site-header-inner">
+        <a class="logo" href="index.html">CALL OF DUTY TRACKER</a>
+        <button class="nav-toggle" type="button" aria-controls="siteNav" aria-expanded="false">MENU</button>
+        <nav id="siteNav" class="site-nav" aria-label="Main navigation">
+            <a href="index.html" aria-current="page">Home</a>
+<a href="stats.html">My Stats</a>
+<a href="stats-guide.html">Stats Guide</a>
+<a href="scorestreak-guide.html">Scorestreak Guide</a>
+<a href="maps.html">Map Guide</a>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content">
+<section class="page hero" aria-labelledby="homeTitle">
+    <div class="login-box">
+        <h1 id="homeTitle">Call of Duty Tracker</h1>
+        <h2>View Your Demo Statistics</h2>
+
+        <form id="statsForm" novalidate>
+            <div class="form-group">
+                <label for="username">Call of Duty Username</label>
+                <input id="username" name="username" type="text"
+                       placeholder="Enter Call of Duty username"
+                       maxlength="30" autocomplete="username" required>
+            </div>
+
+            <p id="loginError" class="error-message" role="alert" aria-live="assertive"></p>
+            <p id="loginSuccess" class="success-message" role="status" aria-live="polite"></p>
+
+            <button class="primary-button" type="submit">VIEW MY STATS</button>
+        </form>
+
+        <p>Demo website — statistics are randomly generated.</p>
+    </div>
+</section>
+</main>
+
+<footer class="site-footer">
+    <p>Call of Duty Tracker Demo</p>
+    <p>
+        <a href="https://www.callofduty.com/" target="_blank" rel="noopener">Call of Duty</a>
+        <a href="https://support.activision.com/" target="_blank" rel="noopener">Activision Support</a>
+        <a href="https://www.esrb.org/" target="_blank" rel="noopener">ESRB</a>
+    </p>
+</footer>
+
+<script>
+document.getElementById("statsForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const input = document.getElementById("username");
+    const error = document.getElementById("loginError");
+    const success = document.getElementById("loginSuccess");
+    const username = input.value.trim();
+
+    error.textContent = "";
+    success.textContent = "";
+
+    if (!username) {
+        error.textContent = "Please enter a Call of Duty username.";
+        input.focus();
+        return;
+    }
+
+    sessionStorage.setItem("codUsername", username);
+    success.textContent = "Stats loaded successfully for " + username + ".";
+    window.location.href = "stats.html";
+});
+</script>
+<script>
+const navToggle = document.querySelector(".nav-toggle");
+const siteNav = document.querySelector("#siteNav");
+
+if (navToggle && siteNav) {
+    navToggle.addEventListener("click", function () {
+        const isOpen = siteNav.classList.toggle("open");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+}
+
+document.querySelectorAll(".site-nav a").forEach(function (link) {
+    link.addEventListener("click", function () {
+        if (siteNav) {
+            siteNav.classList.remove("open");
+            navToggle.setAttribute("aria-expanded", "false");
+        }
+    });
+});
+</script>
+</body>
+</html>
